@@ -9,5 +9,8 @@ wheels/
 # Virtual environments
 .venv
 
+# avoid committing secrets
+.env
+
 # langgraph
 .langgraph_api/
