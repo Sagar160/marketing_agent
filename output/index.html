@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DogBreeds - Your Guide to Dog Breeds & Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --golden-yellow: #F4A460;
+            --warm-brown: #8B4513;
+            --cream: #F5DEB3;
+            --accent-orange: #FF8C00;
+            --dark-text: #2C1810;
+            --light-bg: #FFF8F0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: var(--warm-brown);
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--warm-brown);
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--accent-orange);
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: none;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 0.4rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--warm-brown);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--golden-yellow) 0%, var(--cream) 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--warm-brown);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--dark-text);
+            max-width: 600px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-orange);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background-color: var(--warm-brown);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 140, 0, 0.3);
+        }
+
+        .secondary-button {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--warm-brown);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--warm-brown);
+            cursor: pointer;
+            font-size: 1rem;
+            margin-left: 1rem;
+        }
+
+        .secondary-button:hover {
+            background-color: var(--warm-brown);
+            color: white;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* Breed Showcase Section */
+        .breeds-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--warm-brown);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--dark-text);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .breeds-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .breed-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .breed-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 140, 0, 0.2);
+        }
+
+        .breed-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .breed-content {
+            padding: 1.5rem;
+        }
+
+        .breed-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--warm-brown);
+        }
+
+        .breed-description {
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .breed-traits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .trait-tag {
+            background-color: var(--cream);
+            color: var(--warm-brown);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .learn-more {
+            display: inline-block;
+            color: var(--accent-orange);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .learn-more:hover {
+            color: var(--warm-brown);
+            gap: 0.5rem;
+        }
+
+        /* Features Section */
+        .features-section {
+            background-color: var(--cream);
+            padding: 4rem 2rem;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent-orange);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--warm-brown);
+        }
+
+        .feature-description {
+            color: var(--dark-text);
+            font-size: 0.95rem;
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--warm-brown) 0%, #6B3410 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--cream);
+        }
+
+        .cta-button-white {
+            display: inline-block;
+            background-color: var(--accent-orange);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button-white:hover {
+            background-color: var(--golden-yellow);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-text);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            color: var(--cream);
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+
+            .hamburger {
+                display: none;
+            }
+
+            .hero {
+                padding: 5rem 2rem;
+                min-height: 600px;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero p {
+                font-size: 1.3rem;
+            }
+
+            .breeds-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .section-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .breeds-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .secondary-button {
+                margin-left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-paw"></i>
+                DogBreeds
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#breeds">Breeds</a></li>
+                <li><a href="#care">Care Tips</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Discover Your Perfect Dog Breed</h1>
+        <p>Explore comprehensive guides about different dog breeds, their characteristics, care requirements, and find the perfect companion for your lifestyle.</p>
+        <div class="hero-buttons">
+            <a href="#breeds" class="cta-button">Explore Breeds</a>
+            <a href="#contact" class="secondary-button">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Breed Showcase Section -->
+    <section class="breeds-section" id="breeds">
+        <h2 class="section-title">Featured Dog Breeds</h2>
+        <p class="section-subtitle">Learn about some of the most popular and beloved dog breeds around the world</p>
+        
+        <div class="breeds-grid">
+            <!-- Breed Card 1 -->
+            <div class="breed-card">
+                <img src="https://images.unsplash.com/photo-1633722715463-d30628519b86?w=500&h=400&fit=crop" alt="Golden Retriever" class="breed-image">
+                <div class="breed-content">
+                    <h3 class="breed-name">Golden Retriever</h3>
+                    <p class="breed-description">Friendly, intelligent, and devoted. Golden Retrievers are perfect family companions known for their gentle nature and loyalty.</p>
+                    <div class="breed-traits">
+                        <span class="trait-tag">Friendly</span>
+                        <span class="trait-tag">Intelligent</span>
+                        <span class="trait-tag">Active</span>
+                    </div>
+                    <a href="#" class="learn-more">Learn More →</a>
+                </div>
+            </div>
+
+            <!-- Breed Card 2 -->
+            <div class="breed-card">
+                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=500&h=400&fit=crop" alt="German Shepherd" class="breed-image">
+                <div class="breed-content">
+                    <h3 class="breed-name">German Shepherd</h3>
+                    <p class="breed-description">Confident, courageous, and smart. German Shepherds excel as working dogs and make excellent protectors for families.</p>
+                    <div class="breed-traits">
+                        <span class="trait-tag">Loyal</span>
+                        <span class="trait-tag">Protective</span>
+                        <span class="trait-tag">Smart</span>
+                    </div>
+                    <a href="#" class="learn-more">Learn More →</a>
+                </div>
+            </div>
+
+            <!-- Breed Card 3 -->
+            <div class="breed-card">
+                <img src="https://images.unsplash.com/photo-1612536315141-3a2dcc9a0bd1?w=500&h=400&fit=crop" alt="French Bulldog" class="breed-image">
+                <div class="breed-content">
+                    <h3 class="breed-name">French Bulldog</h3>
+                    <p class="breed-description">Playful, affectionate, and adaptable. French Bulldogs are perfect for apartment living and make wonderful companions.</p>
+                    <div class="breed-traits">
+                        <span class="trait-tag">Playful</span>
+                        <span class="trait-tag">Affectionate</span>
+                        <span class="trait-tag">Compact</span>
+                    </div>
+                    <a href="#" class="learn-more">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="care">
+        <div class="features-container">
+            <h2 class="section-title">Why Choose DogBreeds?</h2>
+            <p class="section-subtitle">Your complete resource for dog breed information and care</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="feature-title">Comprehensive Guides</h3>
+                    <p class="feature-description">Detailed information about every dog breed, including temperament, size, and health considerations.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="feature-title">Health & Care Tips</h3>
+                    <p class="feature-description">Expert advice on nutrition, exercise, grooming, and preventive care for your furry friend.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">Community Support</h3>
+                    <p class="feature-description">Connect with other dog owners, share experiences, and get answers from our knowledgeable community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2>Ready to Find Your Perfect Match?</h2>
+            <p>Start exploring dog breeds today and discover which breed is perfect for your lifestyle and family.</p>
+            <a href="#" class="cta-button-white">Browse All Breeds</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#breeds">Breeds</a>
+                <a href="#care">Care Tips</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Contact</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DogBreeds. All rights reserved. | Helping you find the perfect furry companion.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    navLinks.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

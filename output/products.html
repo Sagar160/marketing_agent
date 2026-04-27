@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Cozy Slippers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lato:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #FFFAF0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #F5E6D3;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8B6F47;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #8B6F47;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #FF6B6B;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            color: #8B6F47;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Filters and Sorting Container */
+        .controls-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+            background-color: #F5E6D3;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-group label {
+            font-weight: 500;
+            color: #8B6F47;
+            font-size: 0.9rem;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #8B6F47;
+            border-radius: 6px;
+            background-color: #FFFAF0;
+            color: #333;
+            font-family: 'Lato', sans-serif;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-group select:hover,
+        .filter-group input:hover {
+            border-color: #FF6B6B;
+        }
+
+        .sort-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sort-group label {
+            font-weight: 500;
+            color: #8B6F47;
+            font-size: 0.9rem;
+        }
+
+        .sort-group select {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #8B6F47;
+            border-radius: 6px;
+            background-color: #FFFAF0;
+            color: #333;
+            font-family: 'Lato', sans-serif;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .sort-group select:hover {
+            border-color: #FF6B6B;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background-color: #F5E6D3;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background-color: #E8D5C4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #8B6F47;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .product-price {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #FF6B6B;
+        }
+
+        .quick-view-btn {
+            background-color: #FF6B6B;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .quick-view-btn:hover {
+            background-color: #E55A5A;
+            transform: scale(1.05);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            background-color: #F5E6D3;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .empty-state h2 {
+            font-family: 'Poppins', sans-serif;
+            color: #8B6F47;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #8B6F47;
+            color: #FFFAF0;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #FFFAF0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #FF6B6B;
+        }
+
+        .newsletter-signup {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-signup input {
+            flex: 1;
+            padding: 0.7rem;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .newsletter-signup button {
+            background-color: #FF6B6B;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-signup button:hover {
+            background-color: #E55A5A;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #FF6B6B;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .social-links a:hover {
+            background-color: #E55A5A;
+            transform: scale(1.1);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 250, 240, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            main {
+                padding: 1rem;
+                margin-top: 120px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .controls-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+
+            .filter-group,
+            .sort-group {
+                width: 100%;
+            }
+
+            .filter-group select,
+            .filter-group input,
+            .sort-group select {
+                width: 100%;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .product-image {
+                height: 180px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-info {
+                padding: 1rem;
+            }
+
+            .controls-section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="index.html" class="logo">Cozy Slippers</a>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Our Slipper Collection</h1>
+            <p>Discover the perfect pair of cozy slippers for ultimate comfort</p>
+        </div>
+
+        <!-- Filters and Sorting -->
+        <div class="controls-section">
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="category-filter">Category:</label>
+                    <select id="category-filter">
+                        <option value="all">All Categories</option>
+                        <option value="indoor">Indoor</option>
+                        <option value="outdoor">Outdoor</option>
+                        <option value="memory-foam">Memory Foam</option>
+                        <option value="fuzzy">Fuzzy</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="size-filter">Size:</label>
+                    <select id="size-filter">
+                        <option value="all">All Sizes</option>
+                        <option value="xs">Extra Small</option>
+                        <option value="s">Small</option>
+                        <option value="m">Medium</option>
+                        <option value="l">Large</option>
+                        <option value="xl">Extra Large</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="price-filter">Max Price:</label>
+                    <input type="range" id="price-filter" min="0" max="200" value="200" step="10">
+                </div>
+            </div>
+            <div class="sort-group">
+                <label for="sort-select">Sort by:</label>
+                <select id="sort-select">
+                    <option value="featured">Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="newest">Newest</option>
+                    <option value="rating">Top Rated</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-grid" id="products-grid">
+            <!-- Product Card 1 -->
+            <div class="product-card" data-category="indoor" data-size="m" data-price="45" data-featured="true">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop" alt="Classic Comfort Slippers">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Classic Comfort</h3>
+                    <p class="product-description">Soft and cozy indoor slippers with memory foam support</p>
+                    <div class="product-footer">
+                        <span class="product-price">$45.99</span>
+                        <button class="quick-view-btn" onclick="quickView('Classic Comfort', '$45.99')">Quick View</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="product-card" data-category="memory-foam" data-size="l" data-price="65" data-featured="true">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1556821552-5fefe8c9ef14?w=400&h=400&fit=crop" alt="Memory Foam Bliss">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Memory Foam Bliss</h3>
+                    <p class="product-description">Premium memory foam slippers with arch support</p>
+                    <div class="product-footer">
+                        <span class="product-price">$65.99</span>
+                        <button class="quick-view-btn" onclick="quickView('Memory Foam Bliss', '$65.99')">Quick View</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="product-card" data-category="fuzzy" data-size="s" data-price="39" data-featured="false">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1572821017969-a2b8e6cedfb0?w=400&h=400&fit=crop" alt="Fuzzy Cloud Nine">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Fuzzy Cloud Nine</h3>
+                    <p class="product-description">Ultra-soft fuzzy slippers perfect for cold nights</p>
+                    <div class="product-footer">
+                        <span class="product-price">$39.99</span>
+                        <button class="quick-view-btn" onclick="quickView('Fuzzy Cloud Nine', '$39.99')">Quick View</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="product-card" data-category="outdoor" data-size="m" data-price="55" data-featured="true">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop" alt="Urban Outdoor">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Urban Outdoor</h3>
+                    <p class="product-description">Durable outdoor slippers with non-slip soles</p>
+                    <div class="product-footer">
+                        <span class="product-price">$55.99</span>
+                        <button class="quick-view-btn" onclick="quickView('Urban Outdoor', '$55.99')">Quick View</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 5 -->
+            <div class="product-card" data-category="indoor" data-size="l" data-price="49" data-featured="false">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1556821552-5fefe8c9ef14?w=400&h=400&fit=crop" alt="Plush Paradise">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Plush Paradise</h3>
+                    <p class="product-description">Luxurious plush slippers for maximum comfort at home</p>
+                    <div class="product-footer">
+                        <span class="product-price">$49.99</span>
+                        <button class="quick-view-btn" onclick="quickView('Plush Paradise', '$49.99')">Quick View</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 6 -->
+            <div class="product-card" data-category="memory-foam" data-size="m" data-price="72" data-featured="false">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1572821017969-a2b8e6cedfb0?w=400&h=400&fit=crop" alt="Premium Support Plus">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Premium Support Plus</h3>
+                    <p class="product-description">Advanced memory foam with orthopedic support</p>
+                    <div class="product-footer">
+                        <span class="product-price">$72.99</span>
+                        <button class="quick-view-btn" onclick="quickView('Premium Support Plus', '$72.99')">Quick View</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 7 -->
+            <div class="product-card" data-category="fuzzy" data-size="m" data-price="42" data-featured="true">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop" alt="Cozy Winter Warmth">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Cozy Winter Warmth</h3>
+                    <p class="product-description">Insulated fuzzy slippers for winter comfort</p>
+                    <div class="product-footer">
+                        <span class="product-price">$42.99</span>
+                        <button class="quick-view-btn" onclick="quickView('Cozy Winter Warmth', '$42.99')">Quick View</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 8 -->
+            <div class="product-card" data-category="outdoor" data-size="l" data-price="58" data-featured="false">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1556821552-5fefe8c9ef14?w=400&h=400&fit=crop" alt="All-Weather Tread">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">All-Weather Tread</h3>
+                    <p class="product-description">Weatherproof slippers for any season outdoor wear</p>
+                    <div class="product-footer">
+                        <span class="product-price">$58.99</span>
+                        <button class="quick-view-btn" onclick="quickView('All-Weather Tread', '$58.99')">Quick View</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <!-- Company Info -->
+            <div class="footer-section">
+                <h3>Cozy Slippers</h3>
+                <p>Your destination for the most comfortable and stylish slippers. We believe in quality, comfort, and coziness.</p>
+                <div class="social-links">
+                    <a href="#facebook" title="Facebook">f</a>
+                    <a href="#instagram" title="Instagram">@</a>
+                    <a href="#twitter" title="Twitter">𝕏</a>
+                    <a href="#pinterest" title="Pinterest">P</a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- Customer Service -->
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#shipping">Shipping Info</a></li>
+                    <li><a href="#returns">Returns</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms & Conditions</a></li>
+                    <li><a href="#warranty">Warranty</a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get special offers and cozy updates!</p>
+                <div class="newsletter-signup">
+                    <input type="email" placeholder="Your email address" aria-label="Email address">
+                    <button onclick="subscribeNewsletter()">Subscribe</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 Cozy Slippers. All rights reserved. | Designed with <span style="color: #FF6B6B;">❤</span> for comfort</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Filter and Sort Functionality
+        const categoryFilter = document.getElementById('category-filter');
+        const sizeFilter = document.getElementById('size-filter');
+        const priceFilter = document.getElementById('price-filter');
+        const sortSelect = document.getElementById('sort-select');
+        const productsGrid = document.getElementById('products-grid');
+
+        // Filter and sort products
+        function filterAndSortProducts() {
+            const category = categoryFilter.value;
+            const size = sizeFilter.value;
+            const maxPrice = parseInt(priceFilter.value);
+            const sortBy = sortSelect.value;
+
+            let products = Array.from(document.querySelectorAll('.product-card'));
+
+            // Filter products
+            products = products.filter(product => {
+                const productCategory = product.getAttribute('data-category');
+                const productSize = product.getAttribute('data-size');
+                const productPrice = parseInt(product.getAttribute('data-price'));
+
+                const categoryMatch = category === 'all' || productCategory === category;
+                const sizeMatch = size === 'all' || productSize === size;
+                const priceMatch = productPrice <= maxPrice;
+
+                return categoryMatch && sizeMatch && priceMatch;
+            });
+
+            // Sort products
+            products.sort((a, b) => {
+                const priceA = parseInt(a.getAttribute('data-price'));
+                const priceB = parseInt(b.getAttribute('data-price'));
+                const featuredA = a.getAttribute('data-featured') === 'true';
+                const featuredB = b.getAttribute('data-featured') === 'true';
+
+                switch (sortBy) {
+                    case 'price-low':
+                        return priceA - priceB;
+                    case 'price-high':
+                        return priceB - priceA;
+                    case 'featured':
+                        return (featuredB ? 1 : 0) - (featuredA ? 1 : 0);
+                    case 'newest':
+                        return 0; // Default order
+                    case 'rating':
+                        return 0; // Default order
+                    default:
+                        return 0;
+                }
+            });
+
+            // Update display
+            productsGrid.innerHTML = '';
+            if (products.length === 0) {
+                productsGrid.innerHTML = '<div class="empty-state" style="grid-column: 1 / -1;"><h2>No products found</h2><p>Try adjusting your filters to find what you\'re looking for.</p></div>';
+            } else {
+                products.forEach(product => {
+                    productsGrid.appendChild(product);
+                });
+            }
+        }
+
+        // Event listeners for filters and sorting
+        categoryFilter.addEventListener('change', filterAndSortProducts);
+        sizeFilter.addEventListener('change', filterAndSortProducts);
+        priceFilter.addEventListener('input', filterAndSortProducts);
+        sortSelect.addEventListener('change', filterAndSortProducts);
+
+        // Quick view function
+        function quickView(productName, price) {
+            alert(`Quick View: ${productName}\nPrice: ${price}\n\nThis would open a modal with more details in a full implementation.`);
+        }
+
+        // Newsletter subscription
+        function subscribeNewsletter() {
+            const emailInput = document.querySelector('.newsletter-signup input');
+            const email = emailInput.value;
+            if (email) {
+                alert(`Thank you for subscribing with ${email}!`);
+                emailInput.value = '';
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        }
+    </script>
+</body>
+</html>

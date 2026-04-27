@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Cozy Haven</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lato:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #FFFAF0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #F5E6D3;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8B6F47;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #8B6F47;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #FF6B6B;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 2rem;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #F5E6D3 0%, #FFFAF0 100%);
+            border-radius: 8px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-section h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            color: #8B6F47;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-form h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            color: #8B6F47;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #8B6F47;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #F5E6D3;
+            border-radius: 8px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #FF6B6B;
+            box-shadow: 0 0 8px rgba(255, 107, 107, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background-color: #FF6B6B;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #E55555;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Contact Information */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #8B6F47;
+            margin-bottom: 1rem;
+        }
+
+        .info-card p {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card a {
+            color: #FF6B6B;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-card a:hover {
+            color: #E55555;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #F5E6D3;
+            color: #8B6F47;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background-color: #FF6B6B;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+        }
+
+        .faq-section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            color: #8B6F47;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .faq-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .faq-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .faq-item h4 {
+            font-family: 'Poppins', sans-serif;
+            color: #8B6F47;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-item p {
+            color: #666;
+            display: none;
+        }
+
+        .faq-item.active p {
+            display: block;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: #FF6B6B;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #8B6F47;
+            color: white;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #FFFAF0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #FF6B6B;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .newsletter-form button {
+            padding: 0.5rem 1rem;
+            background-color: #FF6B6B;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #E55555;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            main {
+                margin-top: 150px;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .hero-section h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-section p {
+                font-size: 0.95rem;
+            }
+
+            .contact-form,
+            .info-card {
+                padding: 1rem;
+            }
+
+            main {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Cozy Haven</div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1>Get in Touch</h1>
+            <p>We'd love to hear from you. Whether you have questions about our products or just want to say hello, feel free to reach out!</p>
+        </section>
+
+        <!-- Contact Section -->
+        <div class="contact-container">
+            <!-- Contact Form -->
+            <form class="contact-form" id="contactForm">
+                <h2>Send us a Message</h2>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Select a subject</option>
+                        <option value="product-inquiry">Product Inquiry</option>
+                        <option value="order-issue">Order Issue</option>
+                        <option value="feedback">Feedback</option>
+                        <option value="partnership">Partnership</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <div class="info-card">
+                    <h3>📍 Address</h3>
+                    <p>Cozy Haven Headquarters</p>
+                    <p>123 Comfort Lane</p>
+                    <p>Warm City, WC 12345</p>
+                    <p>United States</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>📞 Contact Details</h3>
+                    <p>Phone: <a href="tel:+1234567890">+1 (234) 567-8900</a></p>
+                    <p>Email: <a href="mailto:hello@cozyhaven.com">hello@cozyhaven.com</a></p>
+                    <p>Hours: Monday - Friday, 9AM - 6PM EST</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>🌐 Follow Us</h3>
+                    <p>Connect with us on social media for updates and special offers!</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">f</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="Twitter">𝕏</a>
+                        <a href="#" title="Pinterest">P</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <h4>What are your shipping times? <span class="faq-toggle">▼</span></h4>
+                    <p>We typically ship orders within 2-3 business days. Delivery times vary based on your location, but most orders arrive within 5-7 business days.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do you offer international shipping? <span class="faq-toggle">▼</span></h4>
+                    <p>Yes! We ship to over 50 countries worldwide. International shipping rates and times vary by destination. Contact us for a quote.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What is your return policy? <span class="faq-toggle">▼</span></h4>
+                    <p>We offer a 30-day money-back guarantee on all products. If you're not satisfied, simply return the item in its original condition for a full refund.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>How can I track my order? <span class="faq-toggle">▼</span></h4>
+                    <p>Once your order ships, you'll receive a tracking number via email. You can use this to monitor your package's progress in real-time.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do you offer bulk or wholesale orders? <span class="faq-toggle">▼</span></h4>
+                    <p>Yes! We'd love to work with businesses and organizations. Please email us at wholesale@cozyhaven.com for bulk pricing and terms.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Are your products eco-friendly? <span class="faq-toggle">▼</span></h4>
+                    <p>We're committed to sustainability. Most of our products are made with eco-friendly materials and recyclable packaging. Check individual product pages for details.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Cozy Haven</h3>
+                <p>Your destination for warm, comfortable, and stylish home essentials. We believe everyone deserves a cozy space to call their own.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get updates on new products and exclusive offers!</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Cozy Haven. All rights reserved. | Designed with ❤️ for comfort.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // FAQ toggle functionality
+        const faqItems = document.querySelectorAll('.faq-item h4');
+        faqItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const parent = this.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for subscribing to our newsletter!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

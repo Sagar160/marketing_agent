@@ -1,0 +1,30 @@
+{
+  "WhatsApp": {
+    "guide": "Write short, natural, conversational WhatsApp messages that feel personal, direct, and mobile-friendly. Keep them concise.",
+    "sample_prompt": "Promote a limited-time offer for a small business. Keep it friendly, short, and conversational."
+  },
+  "Instagram": {
+    "guide": "Write caption-friendly Instagram copy that supports visuals, starts with a strong hook, and stays punchy.",
+    "sample_prompt": "Create a caption for a new product launch with a bold hook, short body, and optional hashtags."
+  },
+  "Facebook": {
+    "guide": "Write clear, friendly, community-focused Facebook posts that can be slightly longer and more informative.",
+    "sample_prompt": "Write a community update about a new service improvement with a warm tone and clear CTA."
+  },
+  "LinkedIn": {
+    "guide": "Write professional, insight-led LinkedIn posts with clear value, credibility, and a thoughtful call to action.",
+    "sample_prompt": "Write a LinkedIn post sharing a product improvement and explain the business value in a credible, professional tone."
+  },
+  "X": {
+    "guide": "Write concise, high-impact X posts with a strong opening line and clear takeaway.",
+    "sample_prompt": "Draft an X post announcing a feature update in under 250 characters with a direct CTA."
+  },
+  "TikTok": {
+    "guide": "Write short, trend-aware TikTok captions with a hook and simple CTA that complements a video.",
+    "sample_prompt": "Write a TikTok caption for a behind-the-scenes clip of product packaging with a fun tone."
+  },
+  "YouTube": {
+    "guide": "Write compelling YouTube community post copy and short video-description style text with clear value and audience retention focus.",
+    "sample_prompt": "Write a YouTube community post teasing tomorrow's tutorial and encouraging viewers to turn on notifications."
+  }
+}

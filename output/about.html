@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - CozySteps Slippers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lato:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #FFFAF0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #F5E6D3;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #8B6F47;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #8B6F47;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #FF6B6B;
+        }
+
+        .nav-menu a.active {
+            color: #FF6B6B;
+            border-bottom: 2px solid #FF6B6B;
+            padding-bottom: 0.5rem;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #F5E6D3 0%, #FFFAF0 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3rem;
+            color: #8B6F47;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .about-text h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
+            color: #8B6F47;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background-color: #E8D4C0;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8B6F47;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mission & Values Section */
+        .mission-values {
+            background-color: #F5E6D3;
+            padding: 4rem 2rem;
+            margin: 3rem 0;
+        }
+
+        .mission-values h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
+            color: #8B6F47;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .value-card {
+            background-color: #FFFAF0;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            color: #8B6F47;
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Team Section */
+        .team-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .team-section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
+            color: #8B6F47;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            background-color: #F5E6D3;
+            padding: 2rem;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-image {
+            width: 150px;
+            height: 150px;
+            background-color: #E8D4C0;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8B6F47;
+            font-size: 3rem;
+        }
+
+        .team-member h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #8B6F47;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #8B6F47 0%, #A0845F 100%);
+            color: #FFFAF0;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .cta-section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background-color: #FF6B6B;
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: #FF5252;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #8B6F47;
+            color: #FFFAF0;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: #FFFAF0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #FF6B6B;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 8px 0 0 8px;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .newsletter-form button {
+            padding: 0.75rem 1.5rem;
+            background-color: #FF6B6B;
+            color: white;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #FF5252;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: #FF6B6B;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            color: #E8D4C0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            main {
+                margin-top: 70px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+
+            .about-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .mission-values h2,
+            .team-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .cta-section p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .about-section,
+            .team-section {
+                padding: 2rem 1rem;
+            }
+
+            .mission-values {
+                padding: 2rem 1rem;
+            }
+
+            .values-grid,
+            .team-grid {
+                gap: 1.5rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="index.html" class="logo">CozySteps</a>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>About CozySteps</h1>
+            <p>Discover the story behind our passion for comfort and quality slippers that make every step a delight.</p>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>CozySteps was founded with a simple belief: everyone deserves to experience ultimate comfort in their own home. What started as a small family project has blossomed into a thriving brand dedicated to crafting the finest slippers.</p>
+                    <p>Our journey began when our founder realized that most slippers on the market lacked the perfect balance of style, comfort, and durability. Determined to change this, we spent months researching materials, testing designs, and perfecting our craft.</p>
+                    <p>Today, CozySteps is proud to offer a collection of slippers that bring warmth, comfort, and joy to thousands of homes worldwide. Each pair is made with love and attention to detail.</p>
+                </div>
+                <div class="about-image">🏠 CozySteps Story</div>
+            </div>
+        </section>
+
+        <!-- Mission & Values Section -->
+        <section class="mission-values">
+            <h2>Our Mission & Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">❤️</div>
+                    <h3>Comfort First</h3>
+                    <p>We believe that comfort is not a luxury but a necessity. Every design decision is made with your well-being in mind.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌱</div>
+                    <h3>Sustainability</h3>
+                    <p>We are committed to using eco-friendly materials and sustainable practices in all aspects of our business.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">✨</div>
+                    <h3>Quality</h3>
+                    <p>Premium materials and meticulous craftsmanship ensure that every pair of CozySteps slippers lasts for years.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Community</h3>
+                    <p>We value our customers and believe in building a community of people who appreciate quality and comfort.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🎨</div>
+                    <h3>Innovation</h3>
+                    <p>We continuously innovate to bring you the latest designs and technologies in slipper comfort.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌍</div>
+                    <h3>Global Impact</h3>
+                    <p>We strive to make a positive impact on the world through ethical sourcing and fair trade practices.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section">
+            <h2>Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">👨‍💼</div>
+                    <h3>John Smith</h3>
+                    <p>Founder & CEO</p>
+                    <p>With over 15 years of experience in the footwear industry, John leads CozySteps with vision and passion.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">👩‍🎨</div>
+                    <h3>Sarah Johnson</h3>
+                    <p>Design Director</p>
+                    <p>Sarah brings creativity and innovation to every design, ensuring our slippers are both beautiful and functional.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">👨‍🔧</div>
+                    <h3>Michael Chen</h3>
+                    <p>Head of Production</p>
+                    <p>Michael oversees our manufacturing process, ensuring every pair meets our high standards of quality.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">👩‍💼</div>
+                    <h3>Emma Wilson</h3>
+                    <p>Customer Experience Manager</p>
+                    <p>Emma is dedicated to ensuring every customer has an exceptional experience with CozySteps.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready to Experience Comfort?</h2>
+            <p>Join thousands of satisfied customers who have discovered the CozySteps difference. Browse our collection and find your perfect pair of slippers today.</p>
+            <a href="products.html" class="cta-button">Shop Now</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About CozySteps</h3>
+                <p>We create premium, comfortable slippers designed to bring warmth and joy to your home.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="Twitter">𝕏</a>
+                    <a href="#" title="Pinterest">📌</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get updates on new products and exclusive offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 CozySteps. All rights reserved. | <a href="#" style="color: #E8D4C0;">Privacy Policy</a> | <a href="#" style="color: #E8D4C0;">Terms of Service</a></p>
+        </div>
+    </footer>
+</body>
+</html>
